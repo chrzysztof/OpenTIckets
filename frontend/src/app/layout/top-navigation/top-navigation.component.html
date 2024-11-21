@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg navbar-dark py-3 shadow-sm">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img src="assets/logo.png" alt="TicketCenter" class="logo" />
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            [routerLink]="['/home']"
+            routerLinkActive="active"
+          >
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/kanban']"
+            routerLinkActive="active"
+          >
+            Kanban
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/ticket']"
+            routerLinkActive="active"
+          >
+            Tickets
+          </a>
+        </li>
+      </ul>
+
+      <form class="d-flex search-bar">
+        <input
+          class="form-control"
+          type="search"
+          placeholder="Search tickets..."
+          aria-label="Search"
+        />
+        <button class="btn" type="submit">Search</button>
+      </form>
+
+      <div class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle"
+          type="button"
+          id="userMenu"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-person-circle me-1"></i> Username
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+          <li>
+            <a class="dropdown-item" [routerLink]="['/profile']"> Profile </a>
+          </li>
+          <li>
+            <a class="dropdown-item" [routerLink]="['/notifications']">
+              Notifications
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" [routerLink]="['/settings']"> Settings </a>
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" [routerLink]="['/logout']"> Logout </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
