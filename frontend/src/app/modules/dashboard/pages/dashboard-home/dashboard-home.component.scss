@@ -1,0 +1,73 @@
+@import "../../../../variable.scss";
+
+.dashboard-container {
+  padding: 2rem;
+  color: $navbar-link;
+
+  .dashboard-header {
+    text-align: left;
+    margin-bottom: 1.5rem;
+
+    h1 {
+      font-size: 1.8rem;
+      color: $text-primary;
+      margin: 0;
+    }
+  }
+
+  .dashboard-stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .stat-card {
+      background-color: $card-bg;
+      border-radius: 6px;
+      padding: 1rem;
+      flex: 1;
+      box-shadow: 0 2px 4px $card-shadow;
+      text-align: center;
+
+      h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: $text-primary;
+      }
+
+      p {
+        margin: 0.5rem 0 0;
+        font-size: 2rem;
+        font-weight: bold;
+        color: $dropdown-bg;
+      }
+    }
+  }
+
+  .recent-tickets {
+    h2 {
+      color: $text-primary;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .ticket-item {
+      background-color: $card-bg;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px $card-shadow;
+
+      h3 {
+        margin: 0;
+        font-size: 1rem;
+        color: $text-primary;
+      }
+
+      p {
+        margin: 0.5rem 0 0;
+        font-size: 0.875rem;
+        color: $text-secondary;
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@import "../../variable.scss";
+
+.navbar {
+  background: $navbar-bg;
+
+  .logo {
+    width: 140px;
+  }
+
+  .nav-link {
+    color: $navbar-link;
+    transition: color 0.2s ease-in-out;
+
+    &.active {
+      font-weight: bold;
+      color: $navbar-link-hover;
+    }
+
+    &:hover {
+      color: $navbar-link-hover;
+    }
+  }
+
+  .dropdown-menu {
+    border-radius: 0.25rem;
+    background: $dropdown-bg;
+    color: $navbar-link;
+
+    .dropdown-item {
+      color: $navbar-link;
+      &:hover {
+        background: $dropdown-item-hover;
+        color: $navbar-bg;
+      }
+    }
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+
+    input {
+      border-radius: 0.5rem 0 0 0.5rem;
+      border: none;
+      padding: 0.5rem;
+      flex-grow: 1;
+    }
+
+    button {
+      border-radius: 0 0.5rem 0.5rem 0;
+      border: none;
+      background: $search-btn-bg;
+      color: $navbar-bg;
+      padding: 0.5rem 1rem;
+
+      &:hover {
+        background: $search-btn-hover-bg;
+      }
+    }
+  }
+
+  .dropdown-toggle {
+    border-radius: 0.5rem;
+    margin-left: 1rem;
+  }
+}
