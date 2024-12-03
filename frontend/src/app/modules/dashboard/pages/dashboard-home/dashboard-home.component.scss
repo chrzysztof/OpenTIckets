@@ -1,8 +1,8 @@
-@import "../../../../variable.scss";
+@import "../../../../../variable.scss";
 
 .dashboard-container {
   padding: 2rem;
-  color: $navbar-link;
+  color: $color-text-inverted;
 
   .dashboard-header {
     text-align: left;
@@ -10,7 +10,7 @@
 
     h1 {
       font-size: 1.8rem;
-      color: $text-primary;
+      color: $color-text-primary;
       margin: 0;
     }
   }
@@ -21,52 +21,52 @@
     margin-bottom: 2rem;
 
     .stat-card {
-      background-color: $card-bg;
+      background-color: $background-primary;
       border-radius: 6px;
       padding: 1rem;
       flex: 1;
-      box-shadow: 0 2px 4px $card-shadow;
+      box-shadow: 0 2px 4px $shadow-light;
       text-align: center;
 
       h2 {
         margin: 0;
         font-size: 1.2rem;
-        color: $text-primary;
+        color: $color-text-primary;
       }
 
       p {
         margin: 0.5rem 0 0;
         font-size: 2rem;
         font-weight: bold;
-        color: $dropdown-bg;
+        color: $color-secondary;
       }
     }
   }
 
   .recent-tickets {
     h2 {
-      color: $text-primary;
+      color: $color-text-primary;
       font-size: 1.5rem;
       margin-bottom: 1rem;
     }
 
     .ticket-item {
-      background-color: $card-bg;
+      background-color: $background-primary;
       border-radius: 6px;
       padding: 1rem;
       margin-bottom: 1rem;
-      box-shadow: 0 2px 4px $card-shadow;
+      box-shadow: 0 2px 4px $shadow-light;
 
       h3 {
         margin: 0;
         font-size: 1rem;
-        color: $text-primary;
+        color: $color-text-primary;
       }
 
       p {
         margin: 0.5rem 0 0;
         font-size: 0.875rem;
-        color: $text-secondary;
+        color: $color-text-secondary;
       }
     }
   }

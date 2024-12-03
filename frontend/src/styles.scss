@@ -1,2 +1,9 @@
-@import "bootstrap";
+@import "./variable.scss";
+
+$primary: $color-primary;
+$secondary: $color-secondary;
+$body-bg: $background-secondary;
+$body-color: $color-text-primary;
+
+@import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons";
