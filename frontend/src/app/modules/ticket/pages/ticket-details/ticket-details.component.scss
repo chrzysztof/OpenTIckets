@@ -1,0 +1,137 @@
+@import "../../../../../variable.scss";
+
+.ticket-details {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  background-color: $background-secondary;
+  color: $color-text-primary;
+
+  .ticket-header {
+    .ticket-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: $color-primary;
+      margin-bottom: 0.5rem;
+    }
+
+    .ticket-meta {
+      font-size: 0.875rem;
+      color: $color-text-secondary;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      background-color: $color-accent;
+      margin: 1rem auto 0 auto;
+      border-radius: 2px;
+    }
+  }
+
+  .ticket-info {
+    .col-md-3 {
+      h3 {
+        font-size: 1rem;
+        color: $color-text-secondary;
+        margin-bottom: 0.5rem;
+      }
+
+      .badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .ticket-description,
+  .ticket-attachments,
+  .ticket-comments,
+  .ticket-details {
+    background-color: $background-primary;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px $shadow-light;
+    padding: 1.5rem;
+
+    h3 {
+      font-size: 1.25rem;
+      color: $color-primary;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+
+  .ticket-attachments {
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        display: flex;
+        align-items: center;
+
+        a {
+          text-decoration: none;
+          color: $color-accent;
+
+          &:hover {
+            color: $color-accent-hover;
+          }
+        }
+      }
+    }
+  }
+
+  .ticket-comments {
+    .comment {
+      background: $background-secondary;
+      border-radius: 6px;
+
+      p {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      small {
+        display: block;
+        font-size: 0.875rem;
+        color: $color-text-secondary;
+        margin-top: 0.5rem;
+      }
+    }
+
+    .add-comment {
+      display: flex;
+      flex-direction: column;
+
+      textarea {
+        resize: none;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+
+        &:focus {
+          outline: none;
+          border-color: $color-accent;
+          box-shadow: 0 0 0 0.2rem rgba(241, 196, 15, 0.25);
+        }
+      }
+
+      .btn-primary {
+        border: none;
+        align-self: flex-end;
+
+        &:hover {
+          background-color: $color-accent;
+          color: $color-primary;
+        }
+      }
+    }
+  }
+}

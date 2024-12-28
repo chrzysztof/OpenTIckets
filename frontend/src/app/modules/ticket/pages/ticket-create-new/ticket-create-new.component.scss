@@ -1,0 +1,77 @@
+@import "../../../../../variable.scss";
+
+.ticket-create-new {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: $background-secondary;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  header {
+    h1 {
+      color: $color-primary;
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: $color-text-secondary;
+      font-size: 1rem;
+    }
+  }
+
+  form {
+    .form-label {
+      font-weight: bold;
+      color: $color-text-primary;
+    }
+
+    .form-control,
+    .form-select {
+      &:focus {
+        border-color: $color-accent;
+        box-shadow: 0 0 0 0.2rem rgba(241, 196, 15, 0.25);
+      }
+    }
+
+    .btn-primary {
+      background-color: $color-accent;
+      border: none;
+      &:hover {
+        background-color: $color-accent-hover;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .attachments {
+    .attachment-tile {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+
+      p {
+        font-size: 0.85rem;
+      }
+
+      .badge {
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}

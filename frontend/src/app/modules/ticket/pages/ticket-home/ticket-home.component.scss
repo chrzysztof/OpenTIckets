@@ -84,9 +84,12 @@
         }
 
         .ticket-item {
-          margin-bottom: 1rem;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-top: 1rem;
           padding-bottom: 1rem;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
           h3 {
             font-size: 1rem;
@@ -99,8 +102,40 @@
             color: $color-text-secondary;
           }
 
+          .view-arrow {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: $color-accent;
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+
+            &:hover {
+              color: $color-accent-hover;
+              transform: translateX(3px);
+            }
+          }
+
           &:last-child {
             border-bottom: none;
+          }
+
+          .status-icon {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+
+            &.open {
+              background-color: green;
+            }
+            &.in-progress {
+              background-color: orange;
+            }
+            &.high-priority {
+              background-color: red;
+            }
           }
         }
       }

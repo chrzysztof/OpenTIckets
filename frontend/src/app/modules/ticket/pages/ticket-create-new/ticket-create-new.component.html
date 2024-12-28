@@ -1,0 +1,245 @@
+<div class="ticket-create-new container py-4 mb-4">
+  <header class="text-center mb-4">
+    <h1>Create New Ticket</h1>
+    <p class="text-muted">Fill out the form below to create a new ticket.</p>
+  </header>
+
+  <form (ngSubmit)="onSubmit()">
+    <!-- Title -->
+    <div class="mb-3">
+      <label for="ticket-title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="ticket-title"
+        placeholder="Enter ticket title"
+        [(ngModel)]="form.title"
+        name="title"
+        required
+      />
+    </div>
+
+    <!-- Project -->
+    <div class="mb-3">
+      <label for="ticket-project" class="form-label">Project</label>
+      <select
+        class="form-select"
+        id="ticket-project"
+        [(ngModel)]="form.project"
+        name="project"
+        required
+      >
+        <option [value]="null" disabled>Select a project</option>
+        <option *ngFor="let project of projects" [value]="project.id">
+          {{ project.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Assigned To -->
+    <div class="mb-3">
+      <label class="form-label d-block mb-2">Assign To</label>
+      <div class="dropdown">
+        <button
+          class="btn btn-outline-primary dropdown-toggle w-100 text-start"
+          type="button"
+          id="assigneeDropdown"
+          data-bs-toggle="dropdown"
+          data-bs-auto-close="outside"
+          aria-expanded="false"
+        >
+          Select assignees
+        </button>
+        <ul class="dropdown-menu w-100" aria-labelledby="assigneeDropdown">
+          <li *ngFor="let assignee of assignees">
+            <label class="dropdown-item">
+              <input
+                class="form-check-input me-2"
+                type="checkbox"
+                [value]="assignee.id"
+                [checked]="isAssigneeSelected(assignee.id)"
+                (change)="toggleAssigneeSelection(assignee.id)"
+              />
+              {{ assignee.name }}
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div class="mt-2">
+        <strong>Selected Assignees:</strong>
+        <ul class="list-inline mt-1">
+          <li
+            *ngIf="selectedAssignees.length === 0"
+            class="list-inline-item badge bg-light text-muted"
+          >
+            None
+          </li>
+          <li
+            *ngFor="let assigneeId of selectedAssignees"
+            class="list-inline-item badge bg-secondary text-truncate"
+            style="max-width: 150px"
+          >
+            {{ getAssigneeName(assigneeId) }}
+            <i
+              class="bi bi-x-circle text-light ms-1"
+              role="button"
+              (click)="toggleAssigneeSelection(assigneeId)"
+            ></i>
+          </li>
+        </ul>
+      </div>
+      <small class="text-muted d-block mt-2">
+        Optional: Select multiple assignees.
+      </small>
+    </div>
+
+    <!-- Parent Ticket -->
+    <div class="mb-3">
+      <label for="ticket-parent" class="form-label">Parent Ticket</label>
+      <input
+        type="text"
+        class="form-control"
+        id="ticket-parent"
+        placeholder="Enter parent ticket ID (if applicable)"
+        [(ngModel)]="form.parentTicket"
+        name="parentTicket"
+      />
+    </div>
+
+    <!-- Tags -->
+    <div class="mb-3">
+      <label for="ticket-tags" class="form-label">Tags</label>
+      <input
+        type="text"
+        class="form-control"
+        id="ticket-tags"
+        placeholder="Enter tags (comma-separated)"
+        [(ngModel)]="form.tags"
+        name="tags"
+      />
+    </div>
+
+    <!-- Related Component -->
+    <div class="mb-3">
+      <label for="ticket-related-system" class="form-label">
+        Related Component
+      </label>
+      <select
+        class="form-select"
+        id="ticket-related-system"
+        [(ngModel)]="form.relatedComponent"
+        name="relatedComponent"
+      >
+        <option [value]="null" disabled>
+          Select a related system/component
+        </option>
+        <option
+          *ngFor="let component of relatedComponents"
+          [value]="component.id"
+        >
+          {{ component.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="ticket-description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="ticket-description"
+        rows="4"
+        placeholder="Enter ticket description"
+        [(ngModel)]="form.description"
+        name="description"
+        required
+      ></textarea>
+    </div>
+
+    <!-- Verification Steps -->
+    <div class="mb-3">
+      <label for="ticket-verification" class="form-label">
+        Verification Steps
+      </label>
+      <textarea
+        class="form-control"
+        id="ticket-verification"
+        rows="3"
+        placeholder="Enter steps to verify the issue or fix"
+        [(ngModel)]="form.verificationSteps"
+        name="verificationSteps"
+      ></textarea>
+      <small class="text-muted">
+        Optional: Provide steps to verify the resolution of this ticket.
+      </small>
+    </div>
+
+    <!-- Attachments -->
+    <div class="mb-3">
+      <label for="ticket-attachments" class="form-label">Attachments</label>
+      <input
+        type="file"
+        class="form-control mb-2"
+        id="ticket-attachments"
+        multiple
+        (change)="onAttachmentAdded($event)"
+        [disabled]="attachments.length >= 5"
+      />
+      <small class="text-muted d-block mb-2">
+        You can upload up to 5 files. Remaining: {{ 5 - attachments.length }}
+      </small>
+      <div class="attachments d-flex flex-wrap gap-2">
+        <div
+          class="attachment-tile bg-light border rounded p-2 position-relative"
+          *ngFor="let attachment of attachments; let i = index"
+        >
+          <span
+            class="badge bg-danger position-absolute top-0 end-0 me-1 mt-1"
+            role="button"
+            (click)="removeAttachment(i)"
+            >&times;</span
+          >
+          <p class="mb-0 text-center text-truncate" style="max-width: 100px">
+            {{ attachment.name }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Watchers -->
+    <div class="mb-3">
+      <label for="ticket-watchers" class="form-label">Watchers</label>
+      <input
+        type="text"
+        class="form-control"
+        id="ticket-watchers"
+        placeholder="Enter email addresses (comma-separated)"
+        [(ngModel)]="form.watchers"
+        name="watchers"
+      />
+      <small class="text-muted">
+        Optional: Add watchers to notify about ticket updates.
+      </small>
+    </div>
+
+    <!-- Initial Comment -->
+    <div class="mb-3">
+      <label for="ticket-initial-comment" class="form-label">
+        Initial Comment
+      </label>
+      <textarea
+        class="form-control"
+        id="ticket-initial-comment"
+        rows="3"
+        placeholder="Add an initial comment or note"
+        [(ngModel)]="form.initialComment"
+        name="initialComment"
+      ></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary">Create Ticket</button>
+    </div>
+  </form>
+</div>
