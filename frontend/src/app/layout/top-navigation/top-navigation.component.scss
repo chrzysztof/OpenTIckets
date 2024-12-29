@@ -1,36 +1,36 @@
-@import "../../variable.scss";
+@import "../../../variable.scss";
 
 .navbar {
-  background: $navbar-bg;
+  background: $color-primary;
 
   .logo {
     width: 140px;
   }
 
   .nav-link {
-    color: $navbar-link;
+    color: $color-text-inverted;
     transition: color 0.2s ease-in-out;
 
     &.active {
       font-weight: bold;
-      color: $navbar-link-hover;
+      color: $color-accent;
     }
 
     &:hover {
-      color: $navbar-link-hover;
+      color: $color-accent;
     }
   }
 
   .dropdown-menu {
     border-radius: 0.25rem;
-    background: $dropdown-bg;
-    color: $navbar-link;
+    background: $color-secondary;
+    color: $color-text-inverted;
 
     .dropdown-item {
-      color: $navbar-link;
+      color: $color-text-inverted;
       &:hover {
-        background: $dropdown-item-hover;
-        color: $navbar-bg;
+        background: $color-accent;
+        color: $color-primary;
       }
     }
   }
@@ -50,12 +50,12 @@
     button {
       border-radius: 0 0.5rem 0.5rem 0;
       border: none;
-      background: $search-btn-bg;
-      color: $navbar-bg;
+      background: $color-accent;
+      color: $color-primary;
       padding: 0.5rem 1rem;
 
       &:hover {
-        background: $search-btn-hover-bg;
+        background: $color-accent-hover;
       }
     }
   }

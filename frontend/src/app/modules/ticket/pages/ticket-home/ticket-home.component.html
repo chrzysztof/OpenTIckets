@@ -1,0 +1,61 @@
+<div class="ticket-center-home">
+  <!-- Powitanie -->
+  <header class="welcome-section">
+    <h1>Hello, John!</h1>
+    <p>
+      Welcome to the Ticket Center. Here’s an overview of your tickets and
+      actions you can take today.
+    </p>
+    <button class="btn btn-primary" [routerLink]="'/ticket/create'">
+      Create New Ticket
+    </button>
+  </header>
+
+  <div class="main-content">
+    <div class="content-sections">
+      <div class="left-section">
+        <section class="ticket-stats">
+          <div class="stat-card">
+            <h2>Open Tickets</h2>
+            <p>5</p>
+          </div>
+          <div class="stat-card">
+            <h2>High Priority</h2>
+            <p>2</p>
+          </div>
+          <div class="stat-card">
+            <h2>Tickets Due Today</h2>
+            <p>3</p>
+          </div>
+        </section>
+
+        <section class="recent-tickets">
+          <h2>Recent Tickets:</h2>
+          <hr />
+
+          <div class="ticket-item" *ngFor="let x of recentTickets">
+            <div class="ticket-info">
+              <h3>Fix login issue</h3>
+              <p>
+                Status: <span class="status-icon in-progress"></span> In
+                Progress | Due: Today
+              </p>
+            </div>
+            <a href="/ticket/details/1" class="view-arrow">View →</a>
+          </div>
+        </section>
+      </div>
+
+      <section class="quick-actions">
+        <div class="action-card">
+          <h3>Report an Issue</h3>
+          <p>Quickly create a new ticket to address any issue.</p>
+        </div>
+        <div class="action-card">
+          <h3>View All Tickets</h3>
+          <p>Check the complete list of tickets and manage them easily.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

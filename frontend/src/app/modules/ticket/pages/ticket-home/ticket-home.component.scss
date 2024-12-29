@@ -1,0 +1,176 @@
+@import "../../../../../variable.scss";
+
+.ticket-center-home {
+  padding: 2rem;
+  background-color: $background-secondary;
+
+  .welcome-section {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2rem;
+      color: #000;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: $color-text-secondary;
+    }
+
+    .btn-primary {
+      background-color: $color-secondary;
+
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: $color-accent;
+      }
+    }
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .left-section {
+      flex: 70%;
+    }
+
+    .ticket-stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+
+      .stat-card {
+        background-color: $background-primary;
+        border-radius: 8px;
+        padding: 1rem;
+        flex: 1;
+        text-align: center;
+        box-shadow: 0 2px 4px $shadow-light;
+
+        h2 {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          font-size: 2rem;
+          font-weight: bold;
+          color: $color-text-primary;
+        }
+      }
+    }
+
+    .content-sections {
+      display: flex;
+      gap: 1rem;
+
+      .recent-tickets {
+        background-color: $background-primary;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 4px $shadow-light;
+        margin-top: 1rem;
+
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+
+        .ticket-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+          h3 {
+            font-size: 1rem;
+            margin: 0;
+            color: $color-text-primary;
+          }
+
+          p {
+            font-size: 0.875rem;
+            color: $color-text-secondary;
+          }
+
+          .view-arrow {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: $color-accent;
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+
+            &:hover {
+              color: $color-accent-hover;
+              transform: translateX(3px);
+            }
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .status-icon {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+
+            &.open {
+              background-color: green;
+            }
+            &.in-progress {
+              background-color: orange;
+            }
+            &.high-priority {
+              background-color: red;
+            }
+          }
+        }
+      }
+
+      .quick-actions {
+        flex: 30%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .action-card {
+          background-color: $color-secondary;
+          border-radius: 8px;
+          padding: 1.5rem;
+          text-align: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: $color-accent;
+          }
+
+          h3 {
+            font-size: 1.2rem;
+            color: $color-text-inverted;
+            margin-bottom: 0.5rem;
+          }
+
+          p {
+            font-size: 0.9rem;
+            color: $color-text-inverted;
+          }
+        }
+      }
+    }
+  }
+}

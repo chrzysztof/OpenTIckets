@@ -1,0 +1,97 @@
+<div class="ticket-details">
+  <header class="ticket-header text-center mb-4">
+    <h1 class="ticket-title">Fix login issue</h1>
+    <div class="ticket-meta">
+      <span class="text-muted me-3">ID: #12345</span>
+      <span class="text-muted">Project: User Management</span>
+    </div>
+  </header>
+
+  <section class="ticket-info row g-4 mb-4">
+    <div class="col-md-3 text-center">
+      <h3>Status</h3>
+      <span class="badge bg-info">In Progress</span>
+    </div>
+    <div class="col-md-3 text-center">
+      <h3>Priority</h3>
+      <span class="badge bg-danger">High</span>
+    </div>
+    <div class="col-md-3 text-center">
+      <h3>Category</h3>
+      <p>Bug</p>
+    </div>
+    <div class="col-md-3 text-center">
+      <h3>Assigned To</h3>
+      <p>John Doe</p>
+    </div>
+  </section>
+
+  <section class="ticket-description mb-4">
+    <h3 class="border-bottom pb-2 mb-3">Description</h3>
+    <p>
+      Users are unable to log in due to a database connectivity issue. The issue
+      needs urgent resolution.
+    </p>
+  </section>
+
+  <section class="d-flex gap-3">
+    <section class="ticket-attachments mb-4 w-50">
+      <h3 class="border-bottom pb-2 mb-3">Attachments</h3>
+      <ul class="list-unstyled">
+        <li class="mb-2 d-flex align-items-center">
+          <i class="bi bi-paperclip me-2"></i>
+          <a href="#" class="text-decoration-none text-primary">
+            screenshot-error.png
+          </a>
+        </li>
+        <li class="d-flex align-items-center">
+          <i class="bi bi-paperclip me-2"></i>
+          <a href="#" class="text-decoration-none text-primary">log-file.txt</a>
+        </li>
+      </ul>
+    </section>
+    <section class="ticket-subtasks mb-4 w-50">
+      <h3 class="border-bottom pb-2 mb-3">Subtasks</h3>
+      <ul class="list-group">
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          Fix database connection issue
+          <span class="badge bg-info">In Progress</span>
+        </li>
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          Update user login page
+          <span class="badge bg-success">Completed</span>
+        </li>
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          Write database migration script
+          <span class="badge bg-warning text-dark">Pending</span>
+        </li>
+      </ul>
+    </section>
+  </section>
+
+  <section class="ticket-comments">
+    <h3 class="border-bottom pb-2 mb-3">Comments</h3>
+    <div class="comment mb-3 p-3 bg-light rounded">
+      <p>"Looking into the issue right now."</p>
+      <small class="text-muted">By John Doe on 2024-12-01</small>
+    </div>
+    <div class="comment mb-3 p-3 bg-light rounded">
+      <p>"Issue identified, working on a fix."</p>
+      <small class="text-muted">By Admin on 2024-12-02</small>
+    </div>
+    <div class="add-comment">
+      <textarea
+        class="form-control mb-3"
+        rows="3"
+        placeholder="Add a comment..."
+      ></textarea>
+      <button class="btn btn-primary">Post Comment</button>
+    </div>
+  </section>
+</div>

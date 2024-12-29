@@ -1,0 +1,236 @@
+<div class="kanban-board d-flex" cdkDropListGroup>
+  <div class="kanban-column" *ngFor="let column of columns; let i = index">
+    <div class="kanban-column-header">{{ column.name }}</div>
+    <div
+      cdkDropList
+      [cdkDropListData]="column.tickets"
+      [cdkDropListConnectedTo]="connectedDropLists"
+      class="kanban-column-body"
+      (cdkDropListDropped)="onDrop($event)"
+    >
+      <div
+        class="kanban-ticket"
+        *ngFor="let ticket of column.tickets"
+        cdkDrag
+        (click)="openDetails(ticket)"
+      >
+        <strong>{{ ticket.title }}</strong>
+        <p class="text-muted">{{ ticket.project || "No project" }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Offcanvas -->
+<div
+  class="offcanvas offcanvas-start ticket-details"
+  tabindex="-1"
+  id="ticketDetailsOffcanvas"
+  aria-labelledby="ticketDetailsOffcanvasLabel"
+>
+  <div class="offcanvas-header">
+    <h5
+      class="offcanvas-title d-flex align-items-center gap-2"
+      id="ticketDetailsOffcanvasLabel"
+    >
+      <i class="bi bi-ticket-perforated"></i>
+      {{ selectedTicket?.title || "Ticket Details" }}
+    </h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <!-- Summary Section -->
+    <div class="summary mb-4 d-flex justify-content-between gap-3">
+      <div class="summary-item flex-fill text-center">
+        <strong>Status</strong>
+        <p class="badge bg-success">Open</p>
+      </div>
+      <div class="summary-item flex-fill text-center">
+        <strong>Priority</strong>
+        <p class="badge bg-danger">High</p>
+      </div>
+      <div class="summary-item flex-fill text-center">
+        <strong>Comments</strong>
+        <p>{{ selectedTicket?.comments?.length || 0 }}</p>
+      </div>
+    </div>
+
+    <!-- Project -->
+    <div class="mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <i class="bi bi-folder2-open"></i> Project
+      </label>
+      <p class="form-control bg-light">
+        {{ selectedTicket?.project || "Not assigned" }}
+      </p>
+    </div>
+
+    <!-- Parent Ticket -->
+    <div class="mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <i class="bi bi-arrow-return-right"></i> Parent Ticket
+      </label>
+      <p class="form-control bg-light">
+        {{ selectedTicket?.parentTicket || "None" }}
+      </p>
+    </div>
+
+    <!-- Tags -->
+    <div class="mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <i class="bi bi-tags"></i> Tags
+      </label>
+      <div class="tags">
+        <div
+          *ngFor="let tag of selectedTicket?.tags || []"
+          class="tag d-inline-flex align-items-center bg-light rounded px-2 py-1 me-2"
+        >
+          <span>{{ tag }}</span>
+          <i
+            class="bi bi-x-circle text-danger ms-2"
+            role="button"
+            (click)="removeTag(tag)"
+          ></i>
+        </div>
+      </div>
+      <input
+        type="text"
+        class="form-control mt-2"
+        placeholder="Add new tag"
+        [(ngModel)]="newTag"
+      />
+      <button
+        class="btn btn-outline-primary btn-sm w-100 mt-2"
+        (click)="addTag()"
+        [disabled]="!newTag"
+      >
+        Add Tag
+      </button>
+    </div>
+
+    <!-- Related Component -->
+    <div class="mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <i class="bi bi-puzzle"></i> Related Component
+      </label>
+      <p class="form-control bg-light">
+        {{ selectedTicket?.relatedComponent || "Not specified" }}
+      </p>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <i class="bi bi-text-paragraph"></i> Description
+      </label>
+      <textarea class="form-control bg-light" rows="3" readonly>{{
+        selectedTicket?.description || "No description available"
+      }}</textarea>
+    </div>
+
+    <!-- Verification Steps -->
+    <div class="mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <i class="bi bi-check2-all"></i> Verification Steps
+      </label>
+      <textarea class="form-control bg-light" rows="3" readonly>{{
+        selectedTicket?.verificationSteps || "No steps provided"
+      }}</textarea>
+    </div>
+
+    <!-- Attachments -->
+    <div class="mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <i class="bi bi-paperclip"></i> Attachments
+      </label>
+      <div class="attachments d-flex flex-wrap gap-3">
+        <div
+          class="attachment-tile bg-light border rounded p-3 position-relative"
+          *ngFor="let attachment of selectedTicket?.attachments || []"
+        >
+          <i class="bi bi-file-earmark-text text-secondary"></i>
+          <p class="mb-0 text-center text-truncate" style="max-width: 150px">
+            {{ attachment }}
+          </p>
+        </div>
+      </div>
+      <p *ngIf="!selectedTicket?.attachments?.length" class="text-muted">
+        No attachments
+      </p>
+    </div>
+
+    <!-- Watchers -->
+    <div class="mb-3">
+      <label class="form-label d-flex align-items-center gap-2">
+        <i class="bi bi-eye"></i> Watchers
+      </label>
+      <div class="watchers">
+        <div
+          *ngFor="let watcher of selectedTicket?.watchers || []"
+          class="watcher mb-2 d-flex justify-content-between align-items-center bg-light rounded p-2"
+        >
+          <span>{{ watcher }}</span>
+          <i
+            class="bi bi-x-circle text-danger"
+            role="button"
+            (click)="removeWatcher(watcher)"
+          ></i>
+        </div>
+      </div>
+      <input
+        type="email"
+        class="form-control mt-2"
+        placeholder="Add new watcher email"
+        [(ngModel)]="newWatcher"
+      />
+      <button
+        class="btn btn-outline-primary btn-sm w-100 mt-2"
+        (click)="addWatcher()"
+        [disabled]="!newWatcher"
+      >
+        Add Watcher
+      </button>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="comments-section">
+      <label class="form-label d-flex align-items-center gap-2">
+        <i class="bi bi-chat-dots"></i> Comments
+      </label>
+      <div class="comments mb-3">
+        <!-- Display Comments -->
+        <div
+          *ngFor="let comment of selectedTicket?.comments || []"
+          class="comment mb-3 p-3 bg-light rounded d-flex flex-column"
+        >
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-person-circle text-secondary"></i>
+            <strong class="flex-grow-1">{{ comment.author }}</strong>
+            <small class="text-muted">{{ comment.date }}</small>
+          </div>
+          <p class="mt-2">{{ comment.text }}</p>
+        </div>
+
+        <!-- Add New Comment -->
+        <textarea
+          class="form-control mb-3"
+          rows="3"
+          placeholder="Add a new comment..."
+          [(ngModel)]="newComment"
+        ></textarea>
+        <button
+          class="btn btn-primary btn-sm w-100"
+          (click)="addComment()"
+          [disabled]="!newComment"
+        >
+          Post Comment
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
